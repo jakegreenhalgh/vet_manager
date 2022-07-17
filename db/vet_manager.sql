@@ -20,5 +20,5 @@ CREATE TABLE treatments (
   id SERIAL PRIMARY KEY,
   pet_id INT NOT NULL REFERENCES petss(id) ON DELETE CASCADE,
   vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE,
-  treatment_notes TEXT
+  notes TEXT
 );
