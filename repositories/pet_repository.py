@@ -1,10 +1,11 @@
 from db.run_sql import run_sql
 from models.vet import Vet
 from models.pet import Pet
+import repositories.vet_repository as vet_repository
 
 def save(pet):
-    sql = "INSERT INTO pets( name ) VALUES ( %s ) RETURNING id"
-    values = [pet.name]
+    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
+    values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
     results = run_sql( sql, values )
     pet.id = results[0]['id']
     return pet
@@ -16,7 +17,8 @@ def select_all():
     sql = "SELECT * FROM pets"
     results = run_sql(sql)
     for row in results:
-        pet = pet(row['name'], row['id'])
+        vet = vet_repository.select(row['vet_id'])
+        pet = Pet(row['name'], row['type'], row['dob'], row['contact_number'], vet, row['id'])
         pets.append(pet)
     return pets
 
@@ -27,12 +29,9 @@ def select(id):
     values = [id]
     results = run_sql(sql, values)
 
-    # checking if the list returned by `run_sql(sql, values)` is empty. Empty lists are 'fasly' 
-    # Could alternativly have..
-    # if len(results) > 0 
     if results:
         result = results[0]
-        pet = pet(result['name'], result['id'] )
+        pet = Pet(result['name'], result['type'], result['dob'], result['contact_number'], result['vet'], result['id'])
     return pet
 
 
@@ -40,20 +39,3 @@ def delete_all():
     sql = "DELETE FROM pets"
     run_sql(sql)
 
-def locations(pet):
-    locations = []
-
-    sql = '''
-    SELECT locations.* FROM locations
-    INNER JOIN visits
-    ON visits.location_id = locations.id
-    WHERE visits.pet_id = %s
-    '''
-    values = [pet.id]
-    results = run_sql(sql, values)
-
-    for row in results:
-        location = Location(row['name'], row['category'], row['id'])
-        locations.append(location)
-
-    return locations

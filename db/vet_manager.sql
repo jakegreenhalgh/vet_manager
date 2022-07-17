@@ -4,15 +4,15 @@ DROP TABLE treatments;
 
 CREATE TABLE vets (
   id SERIAL PRIMARY KEY,
-  vet_name VARCHAR(255)
+  name VARCHAR(255)
 );
 
 CREATE TABLE pets (
   id SERIAL PRIMARY KEY,
-  pet_name VARCHAR(255),
-  animal_type VARCHAR(255),
-  date_of_birth VARCHAR(255)
-  owner_contact_number INT(255)
+  name VARCHAR(255),
+  type VARCHAR(255),
+  dob VARCHAR(255)
+  contact_number INT(255)
   vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE
 );
 
