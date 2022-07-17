@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Log a treatment</h1>
+
+<form action="/pets" method="post">
+    <label for="name">Pet Name</label>
+    <input type="text" name="name" placeholder="Name" id="pet_name" required>
+  
+    <label for="type">Pet Type</label>
+    <input type="text" name="type" placeholder="Type" id="pet_type" required>
+
+    <label for="dob">Date of Birth</label>
+    <input type="date" name="dob" placeholder="dd/mm/yyyy" id="pet_dob" required>
+
+    <label for="contact_number">Owner's Contact Number</label>
+    <input type="number" name="contact_number" placeholder="Phone no." id="contact_number">
+
+    <label for="pet_vet">Select the vetanarian who performed the treatment:</label>
+    <select name="pet_vet" id="pet_vet">
+      {% for vet in vets %}
+      <option value="{{ vet.id }}">{{ vet.name }}</option>
+      {% endfor %}
+    </select>
+
+    <input class="btn btn--action" type='submit' value="Submit">
+</form>
+
+{% endblock %}
