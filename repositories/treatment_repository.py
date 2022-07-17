@@ -3,14 +3,6 @@ from models.treatment import Treatment
 import repositories.pet_repository as pet_repository
 import repositories.vet_repository as vet_repository
 
-def save(treatment):
-    sql = "INSERT INTO treatments ( date, pet_id, vet_id, notes ) VALUES ( %s, %s, %s ) RETURNING id"
-    values = [treatment.date, treatment.pet.id, treatment.vet.id, treatment.notes]
-    results = run_sql( sql, values )
-    treatment.id = results[0]['id']
-    return treatment
-
-
 def select_all():
     treatments = []
 
@@ -33,3 +25,10 @@ def delete(id):
     sql = "DELETE FROM treatments WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def save(treatment):
+    sql = "INSERT INTO treatments ( date, pet_id, vet_id, notes ) VALUES ( %s, %s, %s ) RETURNING id"
+    values = [treatment.date, treatment.pet.id, treatment.vet.id, treatment.notes]
+    results = run_sql( sql, values )
+    treatment.id = results[0]['id']
+    return treatment

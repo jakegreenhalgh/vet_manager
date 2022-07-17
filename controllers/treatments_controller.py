@@ -30,7 +30,7 @@ def create_treatment():
     notes = request.form['notes']
     vet = vet_repository.select(vet_id)
     pet = pet_repository.select(pet_id)
-    treatment = Treatment(date_performed, vet, pet, notes)
+    treatment = Treatment(date_performed, vet, pet, notes, id)
     treatment_repository.save(treatment)
     return redirect('/treatments')
 
