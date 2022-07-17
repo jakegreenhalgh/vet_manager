@@ -15,7 +15,8 @@ def pets():
 @pets_blueprint.route("/pets/<id>")
 def show(id):
     pet = pet_repository.select(id)
-    return render_template("pets/show.html", pet=pet)
+    vet = pet_repository.vets(pet)
+    return render_template("pets/show.html", pet=pet, vet=vet)
 
 
 @pets_blueprint.route("/pets/new", methods=['GET'])
@@ -29,7 +30,7 @@ def create_pet():
     pet_type = request.form['type']
     pet_dob = request.form['dob']
     contact_number = request.form['contact_number']
-    vet = vet_repository.select(pet_vet)
+    vet = vet_repository.select(request.form['pet_vet'])
     pet = Pet(pet_name, pet_type, pet_dob, contact_number, vet, id)
     pet_repository.save(pet)
     return redirect('/pets')

@@ -24,7 +24,7 @@ def new_vet():
 @vets_blueprint.route("/vets",  methods=['POST'])
 def create_vet():
     vet_name = request.form['name']
-    vet = vet(vet_name, id)
+    vet = Vet(vet_name, id)
     vet_repository.save(vet)
     return redirect('/vets')
 

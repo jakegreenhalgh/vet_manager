@@ -1,5 +1,5 @@
-DROP TABLE pets
 DROP TABLE vets;
+DROP TABLE pets
 DROP TABLE treatments;
 
 CREATE TABLE vets (

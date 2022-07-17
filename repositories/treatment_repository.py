@@ -32,3 +32,21 @@ def save(treatment):
     results = run_sql( sql, values )
     treatment.id = results[0]['id']
     return treatment
+
+def vets(treatment):
+    vets = []
+
+    sql = '''
+    SELECT vets.* FROM vets
+    INNER JOIN treatments
+    ON treatments.vet_id = vets.id
+    WHERE treatments.vet_id = %s
+    '''
+    values = [treatment.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        vet = vet(row['name'], row['id'])
+        vets.append(vet)
+
+    return vets

@@ -3,14 +3,6 @@ from models.vet import Vet
 from models.pet import Pet
 import repositories.vet_repository as vet_repository
 
-def save(pet):
-    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
-    values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
-    results = run_sql( sql, values )
-    pet.id = results[0]['id']
-    return pet
-
-
 def select_all():
     pets = []
 
@@ -35,7 +27,32 @@ def select(id):
     return pet
 
 
+def save(pet):
+    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING *"
+    values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
+    results = run_sql( sql, values )
+    pet.id = results[0]['id']
+    return pet
+
+
 def delete_all():
     sql = "DELETE FROM pets"
     run_sql(sql)
 
+def vets(pets):
+    vets = []
+
+    sql = '''
+    SELECT vets.* FROM vets
+    INNER JOIN pets
+    ON pets.vet_id = vets.id
+    WHERE pets.vet_id = %s
+    '''
+    values = [pets.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        vet = Vet(row['name'], row['id'])
+        vets.append(vet)
+
+    return vets
