@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All pet patients</h1>
+<h3>For more information, please select a pet</h3>
+
+<ul>
+    {% for pet in pets %}
+        <li>
+            <a href="/pets/{{ pet.id }}">{{pet.name}}</a>
+            <p>Type: {{ pet.type }}</p>
+            <p>Assigned Vet: {{ pet.vet.name }}</p>
+        </li>
+    {% endfor %}
+</ul>
+    
+{% endblock content %}

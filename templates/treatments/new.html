@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Log a treatment</h1>
+
+<form action="/treatments" method="post">
+  <label for="date_performed">Date performed</label>
+  <input type="text" name="date_performed" placeholder="Date" id="date_performed" required>
+  
+    <label for="vet">Select the vetanarian who performed the treatment:</label>
+    <select name="vet_id" id="vet">
+      {% for vet in vets %}
+      <option value="{{ vet.id }}">{{ vet.name }}</option>
+      {% endfor %}
+    </select>
+  
+  <label for="pet">Select the pet:</label>
+    <select name="pet_id" id="pet" required>
+      {% for pet in vets.pet %}
+      <option value="{{ pet.id }}">{{ pet.name }}</option>
+      {% endfor %}
+    </select>
+  
+
+  <label for="notes">Add treatment notes here:</label>
+  <textarea name="notes" id="notes" cols="30" rows="10" required ></textarea>
+  <input class="btn btn--action" type='submit' value="Submit log">
+</form>
+
+{% endblock %}

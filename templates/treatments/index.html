@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>All treatments performed</h1>
+<h3>Please select a record</h3>
+
+<h6><a href="/treatments/new">Log a new treatment</a></h6>
+
+<ul>
+    {% for treatment in treatments %}
+        <li>
+            <a href="/treatments/{{ treatment.id }}">{{treatment.date}}</a>
+            <p>Name: {{ treatment.pet.name }}</p>
+            <p>Performed by: {{ treatmet.vet.name }}</p>
+        </li>
+    {% endfor %}
+</ul>
+    
+{% endblock content %}

@@ -4,8 +4,8 @@ import repositories.pet_repository as pet_repository
 import repositories.vet_repository as vet_repository
 
 def save(treatment):
-    sql = "INSERT INTO treatments ( pet_id, vet_id, notes ) VALUES ( %s, %s, %s ) RETURNING id"
-    values = [treatment.pet.id, treatment.vet.id, treatment.notes]
+    sql = "INSERT INTO treatments ( date, pet_id, vet_id, notes ) VALUES ( %s, %s, %s ) RETURNING id"
+    values = [treatment.date, treatment.pet.id, treatment.vet.id, treatment.notes]
     results = run_sql( sql, values )
     treatment.id = results[0]['id']
     return treatment
@@ -20,7 +20,7 @@ def select_all():
     for row in results:
         pet = pet_repository.select(row['pet_id'])
         vet = vet_repository.select(row['vet_id'])
-        treatment = Treatment(pet, vet, row['notes'], row['id'])
+        treatment = Treatment(row['date'], pet, vet, row['notes'], row['id'])
         treatments.append(treatment)
     return treatments
 
