@@ -15,12 +15,13 @@ def treatments():
 @treatments_blueprint.route("/treatments/<id>")
 def show(id):
     treatment = treatment_repository.select(id)
-    return render_template("treatments/show.html", treatment=treatment)
+    return render_template("treatments/show.html", treatment=treatment, pet=pet, vet=vet)
 
 @treatments_blueprint.route("/treatments/new", methods=['GET'])
 def new_treatment():
     vets = vet_repository.select_all()
-    return render_template("treatments/new.html", vets = vets)
+    pets = pet_repository.select_all()
+    return render_template("treatments/new.html", vets = vets, pets=pets)
 
 @treatments_blueprint.route("/treatments",  methods=['POST'])
 def create_treatment():

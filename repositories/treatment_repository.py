@@ -12,10 +12,18 @@ def select_all():
     for row in results:
         pet = pet_repository.select(row['pet_id'])
         vet = vet_repository.select(row['vet_id'])
-        treatment = Treatment(row['date'], pet, vet, row['notes'], row['id'])
+        treatment = Treatment(row['date_performed'], vet, pet, row['notes'], row['id'])
         treatments.append(treatment)
     return treatments
 
+def select(id):
+    sql = "SELECT * FROM treatments WHERE id = %s"
+    values = [id]
+    results = run_sql(sql, values)
+
+    if results:
+        result = results[0]
+        return result
 
 def delete_all():
     sql = "DELETE FROM treatments"
@@ -32,21 +40,3 @@ def save(treatment):
     results = run_sql( sql, values )
     treatment.id = results[0][0]
     return treatment
-
-def vets(treatment):
-    vets = []
-
-    sql = '''
-    SELECT vets.* FROM vets
-    INNER JOIN treatments
-    ON treatments.vet_id = vets.id
-    WHERE treatments.vet_id = %s
-    '''
-    values = [treatment.id]
-    results = run_sql(sql, values)
-
-    for row in results:
-        vet = vet(row['name'], row['id'])
-        vets.append(vet)
-
-    return vets

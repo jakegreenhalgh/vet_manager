@@ -16,7 +16,7 @@
   
   <label for="pet">Select the pet:</label>
     <select name="pet_id" id="pet" required>
-      {% for pet in vets.pet %}
+      {% for pet in pets %}
       <option value="{{ pet.id }}">{{ pet.name }}</option>
       {% endfor %}
     </select>
