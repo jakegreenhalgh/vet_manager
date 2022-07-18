@@ -1,5 +1,5 @@
 DROP TABLE vets;
-DROP TABLE pets
+DROP TABLE pets;
 DROP TABLE treatments;
 
 CREATE TABLE vets (
@@ -12,7 +12,7 @@ CREATE TABLE pets (
   name VARCHAR(255),
   type VARCHAR(255),
   dob VARCHAR(255),
-  contact_number INT,
+  contact_number VARCHAR(255),
   vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE
 );
 

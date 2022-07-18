@@ -16,22 +16,20 @@ def select_all():
 
 
 def select(id):
-    pet = None
     sql = "SELECT * FROM pets WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
 
     if results:
         result = results[0]
-        pet = Pet(result['name'], result['type'], result['dob'], result['contact_number'], result['vet'], result['id'])
-    return pet
+        return result
 
 
 def save(pet):
-    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING *"
+    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
     values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
     results = run_sql( sql, values )
-    pet.id = results[0]['id']
+    pet.id = results[0][0]
     return pet
 
 
@@ -41,18 +39,16 @@ def delete_all():
 
 def vets(pets):
     vets = []
-
     sql = '''
-    SELECT vets.* FROM vets
+    SELECT * FROM vets
     INNER JOIN pets
     ON pets.vet_id = vets.id
     WHERE pets.vet_id = %s
     '''
-    values = [pets.id]
+    values = [0][pets.id]
     results = run_sql(sql, values)
 
     for row in results:
-        vet = Vet(row['name'], row['id'])
-        vets.append(vet)
-
+        vets = Vet(row[0],row[1])
+    raise ValueError(results)    
     return vets

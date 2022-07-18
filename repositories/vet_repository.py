@@ -7,13 +7,12 @@ def select_all():
     sql = "SELECT * FROM vets"
     results = run_sql(sql)
     for row in results:
-        user = Vet(row['name'], row['id'])
-        vets.append(user)
+        vet = Vet(row['name'], row['id'])
+        vets.append(vet)
     return vets
 
 
 def select(id):
-    vet = None
     sql = "SELECT * FROM vets WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
@@ -36,5 +35,5 @@ def save(vet):
     sql = "INSERT INTO vets( name ) VALUES ( %s ) RETURNING id"
     values = [vet.name]
     results = run_sql( sql, values )
-    vet.id = results[0]['id']
+    vet.id = results[0][0]
     return vet

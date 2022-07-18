@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table>
+
     <h1> {{treatment.date}} </h1>
     <p>Name: {{ treatment.pet.name }}</p>
     <p>Type: {{ pet.type }}</p>
     <p>Date of Birth: {{ pet.dob }}</p>
     <p>Owner contact no.: {{pet.contact_number}}</p>
-    <p>Assigned vet:<a href="/vets/{{ pet.vet.id }}">{{pet.vet.id}}</a></p>
-</table>
-
-
-
-<h3>{{vet.name}} treats the following patients:</h3>
+    Assigned Vet: {{ pet.vet.name }}
 
 {% endblock %}

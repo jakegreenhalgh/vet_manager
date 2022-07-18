@@ -27,10 +27,10 @@ def delete(id):
     run_sql(sql, values)
 
 def save(treatment):
-    sql = "INSERT INTO treatments ( date, pet_id, vet_id, notes ) VALUES ( %s, %s, %s ) RETURNING id"
+    sql = "INSERT INTO treatments ( date_performed, pet_id, vet_id, notes ) VALUES ( %s, %s, %s, %s ) RETURNING id"
     values = [treatment.date, treatment.pet.id, treatment.vet.id, treatment.notes]
     results = run_sql( sql, values )
-    treatment.id = results[0]['id']
+    treatment.id = results[0][0]
     return treatment
 
 def vets(treatment):
