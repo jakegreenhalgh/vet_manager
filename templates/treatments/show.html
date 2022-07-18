@@ -4,9 +4,7 @@
 
     <h1> {{treatment.date}} </h1>
     <p>Name: {{ treatment.pet.name }}</p>
-    <p>Type: {{ pet.type }}</p>
-    <p>Date of Birth: {{ pet.dob }}</p>
-    <p>Owner contact no.: {{pet.contact_number}}</p>
-    Assigned Vet: {{ pet.vet.name }}
+    <p>Assigned Vet: {{ treatment.vet.name }}</p> 
+    <p>Notes: {{ treatment.notes }}</p>
 
 {% endblock %}

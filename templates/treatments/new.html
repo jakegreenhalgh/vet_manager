@@ -7,7 +7,7 @@
   <label for="date_performed">Date performed</label>
   <input type="text" name="date_performed" placeholder="Date" id="date_performed" required>
   
-    <label for="vet">Select the vetanarian who performed the treatment:</label>
+    <label for="vet_id">Select the vetanarian who performed the treatment:</label>
     <select name="vet_id" id="vet">
       {% for vet in vets %}
       <option value="{{ vet.id }}">{{ vet.name }}</option>

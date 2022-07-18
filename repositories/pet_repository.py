@@ -29,7 +29,7 @@ def save(pet):
     sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
     values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
     results = run_sql( sql, values )
-    pet.id = results[0][0]
+    pet.id = results[0]['id']
     return pet
 
 
@@ -45,10 +45,9 @@ def vets(pets):
     ON pets.vet_id = vets.id
     WHERE pets.vet_id = %s
     '''
-    values = [0][pets.id]
+    values = [0][id]
     results = run_sql(sql, values)
 
     for row in results:
-        vets = Vet(row[0],row[1])
-    raise ValueError(results)    
+        vets = Vet(row['name'],row['id']) 
     return vets

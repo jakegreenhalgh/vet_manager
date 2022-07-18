@@ -15,7 +15,7 @@ def treatments():
 @treatments_blueprint.route("/treatments/<id>")
 def show(id):
     treatment = treatment_repository.select(id)
-    return render_template("treatments/show.html", treatment=treatment, pet=pet, vet=vet)
+    return render_template("treatments/show.html", treatment=treatment)
 
 @treatments_blueprint.route("/treatments/new", methods=['GET'])
 def new_treatment():
@@ -31,7 +31,7 @@ def create_treatment():
     notes = request.form['notes']
     vet = vet_repository.select(vet_id)
     pet = pet_repository.select(pet_id)
-    treatment = Treatment(date_performed, vet, pet, notes, id)
+    treatment = Treatment(date_performed, vet, pet, notes)
     treatment_repository.save(treatment)
     return redirect('/treatments')
 
