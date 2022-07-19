@@ -9,7 +9,7 @@
 <ul>
     {% for treatment in treatments %}
         <li>
-            <a href="/treatments/{{ treatment.id }}">{{treatment.date}}</a>
+            <a href="/treatments/{{ treatment.id }}">{{treatment.check_in}} - {{ treatment.check_out }}</a>
             <p>Name: {{ treatment.pet.name }}</p>
             <p>Performed by: {{ treatment.vet.name }}</p>
         </li>
