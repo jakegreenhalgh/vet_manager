@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 from models.treatment import Treatment
 from models.pet import Pet
 import repositories.vet_repository as vet_repository
+import repositories.owner_repository as owner_repository
 
 def select_all():
     pets = []
@@ -10,7 +11,8 @@ def select_all():
     results = run_sql(sql)
     for row in results:
         vet = vet_repository.select(row['vet_id'])
-        pet = Pet(row['name'], row['type'], row['dob'], row['contact_number'], vet, row['id'])
+        owner = owner_repository.select(row['owner_id'])
+        pet = Pet(row['name'], row['type'], row['dob'], owner, vet, row['id'])
         pets.append(pet)
     return pets
 
@@ -24,13 +26,14 @@ def select(id):
     if results:
         result = results[0]
         vet = vet_repository.select(result['vet_id'])
-        result = Pet(result['name'], result['type'], result['dob'], result['contact_number'], vet, result['id'])
+        owner = owner_repository.select(result['owner_id'])
+        result = Pet(result['name'], result['type'], result['dob'], owner, vet, result['id'])
     return result
 
 
 def save(pet):
-    sql = "INSERT INTO pets( name, type, dob, contact_number, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
-    values = [pet.name, pet.type, pet.dob, pet.contact_number, pet.vet.id]
+    sql = "INSERT INTO pets( name, type, dob, owner_id, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
+    values = [pet.name, pet.type, pet.dob, pet.owner.id, pet.vet.id]
     results = run_sql( sql, values )
     pet.id = results[0]['id']
     return pet

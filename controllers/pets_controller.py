@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
+from controllers.owners_controller import owners
 from controllers.treatments_controller import treatments
 from models.pet import Pet
 import repositories.pet_repository as pet_repository
 import repositories.vet_repository as vet_repository
-import repositories.treatment_repository as treatment_repository
+import repositories.owner_repository as owner_repository
 
 pets_blueprint = Blueprint("pets", __name__)
 
@@ -23,16 +24,17 @@ def show(id):
 @pets_blueprint.route("/pets/new", methods=['GET'])
 def new_pet():
     vets = vet_repository.select_all()
-    return render_template("pets/new.html", vets = vets)
+    owners = owner_repository.select_all()
+    return render_template("pets/new.html", vets = vets, owners=owners)
 
 @pets_blueprint.route("/pets",  methods=['POST'])
 def create_pet():
     pet_name = request.form['name']
     pet_type = request.form['type']
     pet_dob = request.form['dob']
-    contact_number = request.form['contact_number']
+    owner = owner_repository.select(request.form['pet_owner'])
     vet = vet_repository.select(request.form['pet_vet'])
-    pet = Pet(pet_name, pet_type, pet_dob, contact_number, vet, id)
+    pet = Pet(pet_name, pet_type, pet_dob, owner, vet, id)
     pet_repository.save(pet)
     return redirect('/pets')
 
