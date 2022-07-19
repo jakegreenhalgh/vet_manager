@@ -5,7 +5,7 @@
     <h1> {{pet.name}} </h1>
     <p>Type: {{ pet.type }}</p>
     <p>Date of Birth: {{ pet.dob }}</p>
-    <p>Owner contact no.: {{pet.contact_number}}</p>
+    <p>Owner: <a href="/owners/{{pet.owner.id}}">{{pet.owner.name}}</a></p>
     <p>Assigned vet:<a href="/vets/{{pet.vet.id}}">{{pet.vet.name}}</a></p>
 </table>
 
