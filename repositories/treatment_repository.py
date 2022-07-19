@@ -12,7 +12,7 @@ def select_all():
     for row in results:
         pet = pet_repository.select(row['pet_id'])
         vet = vet_repository.select(row['vet_id'])
-        treatment = Treatment(row['date_performed'], vet, pet, row['notes'], row['id'])
+        treatment = Treatment(row['check_in'], row['check_out'], vet, pet, row['notes'], row['id'])
         treatments.append(treatment)
     return treatments
 
@@ -26,7 +26,7 @@ def select(id):
         result = results[0]
         pet = pet_repository.select(result['pet_id'])
         vet = vet_repository.select(result['vet_id'])
-        result = Treatment(result['date_performed'], vet, pet, result['notes'], result['id'])
+        result = Treatment(result['check_in'], result['check_out'], vet, pet, result['notes'], result['id'])
     return result
 
 def delete_all():
@@ -39,8 +39,8 @@ def delete(id):
     run_sql(sql, values)
 
 def save(treatment):
-    sql = "INSERT INTO treatments ( date_performed, pet_id, vet_id, notes ) VALUES ( %s, %s, %s, %s ) RETURNING id"
-    values = [treatment.date, treatment.pet.id, treatment.vet.id, treatment.notes]
+    sql = "INSERT INTO treatments ( check_in, check_out, pet_id, vet_id, notes ) VALUES ( %s, %s, %s, %s, %s ) RETURNING id"
+    values = [treatment.check_in, treatment.check_out, treatment.pet.id, treatment.vet.id, treatment.notes]
     results = run_sql( sql, values )
     treatment.id = results[0]['id']
     return treatment

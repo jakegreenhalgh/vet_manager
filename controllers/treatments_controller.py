@@ -25,13 +25,14 @@ def new_treatment():
 
 @treatments_blueprint.route("/treatments",  methods=['POST'])
 def create_treatment():
-    date_performed = request.form['date_performed']
+    check_in = request.form['check_in']
+    check_out = request.form['check_out']
     vet_id = request.form['vet_id']
     pet_id = request.form['pet_id']
     notes = request.form['notes']
     vet = vet_repository.select(vet_id)
     pet = pet_repository.select(pet_id)
-    treatment = Treatment(date_performed, vet, pet, notes)
+    treatment = Treatment(check_in, check_out, vet, pet, notes)
     treatment_repository.save(treatment)
     return redirect('/treatments')
 

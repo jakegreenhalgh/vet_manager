@@ -63,7 +63,7 @@ def treatments(pet):
 
     for row in results:
         vet = vet_repository.select(row['vet_id'])
-        treatment = Treatment(row['date_performed'], vet, pet, row['notes'], row['id'])
+        treatment = Treatment(row['check_in'], row['check_out'], vet, pet, row['notes'], row['id'])
         treatments.append(treatment)
 
     return treatments

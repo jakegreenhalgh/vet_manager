@@ -26,7 +26,8 @@ CREATE TABLE pets (
 
 CREATE TABLE treatments (
   id SERIAL PRIMARY KEY,
-  date_performed VARCHAR,
+  check_in DATE,
+  check_out DATE,
   pet_id INT NOT NULL REFERENCES pets(id) ON DELETE CASCADE,
   vet_id INT NOT NULL REFERENCES vets(id) ON DELETE CASCADE,
   notes TEXT

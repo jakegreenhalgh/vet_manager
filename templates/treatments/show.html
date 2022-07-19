@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1> {{treatment.date}} </h1>
+    <h1> {{treatment.check_in}} - {{ treatment.check_out }} </h1>
     <p>Name:  <a href="/pets/{{ treatment.pet.id }}"> {{treatment.pet.name}} </a></p>
     <p>Assigned Vet: <a href="/vets/{{ treatment.vet.id }}"> {{treatment.vet.name}} </a></p> 
     <p>Notes: {{ treatment.notes }}</p>

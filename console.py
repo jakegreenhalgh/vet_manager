@@ -46,5 +46,5 @@ pet_repository.save(pet4)
 pet5 = Pet("Donkey", "Donkey", "2001-04-22", owner4, vet1)
 pet_repository.save(pet5)
 
-treatment1 = Treatment("2022-15-07", vet1, pet1, "Patient had a broken wing")
+treatment1 = Treatment("2022-07-15", "2022-07-19", vet1, pet1, "Patient had a broken wing")
 treatment_repository.save(treatment1)
