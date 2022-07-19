@@ -13,7 +13,8 @@ def vets():
 @vets_blueprint.route("/vets/<id>")
 def show(id):
     vet = vet_repository.select(id)
-    return render_template("vets/show.html", vet=vet)
+    pets= vet_repository.pets(vet)
+    return render_template("vets/show.html", vet=vet, pets=pets)
 
 
 @vets_blueprint.route("/vets/new", methods=['GET'])

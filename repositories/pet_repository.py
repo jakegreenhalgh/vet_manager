@@ -1,5 +1,5 @@
 from db.run_sql import run_sql
-from models.vet import Vet
+from models.treatment import Treatment
 from models.pet import Pet
 import repositories.vet_repository as vet_repository
 
@@ -40,17 +40,22 @@ def delete_all():
     sql = "DELETE FROM pets"
     run_sql(sql)
 
-def vets(pets):
-    vets = []
+def treatments(pet):
+    treatments = []
+    vet = None
+
     sql = '''
-    SELECT * FROM vets
+    SELECT treatments.* FROM treatments
     INNER JOIN pets
-    ON pets.vet_id = vets.id
-    WHERE pets.vet_id = %s
+    ON treatments.pet_id = pets.id
+    WHERE pets.id = %s
     '''
-    values = [0][id]
+    values = [pet.id]
     results = run_sql(sql, values)
 
     for row in results:
-        vets = Vet(row['name'],row['id']) 
-    return vets
+        vet = vet_repository.select(row['vet_id'])
+        treatment = Treatment(row['date_performed'], vet, pet, row['notes'], row['id'])
+        treatments.append(treatment)
+
+    return treatments

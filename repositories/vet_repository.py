@@ -1,5 +1,6 @@
 from db.run_sql import run_sql
 from models.vet import Vet
+from models.pet import Pet
 
 def select_all():
     vets = []
@@ -37,3 +38,21 @@ def save(vet):
     results = run_sql( sql, values )
     vet.id = results[0]['id']
     return vet
+
+def pets(vet):
+    pets = []
+
+    sql = '''
+    SELECT pets.* FROM pets
+    INNER JOIN vets
+    ON pets.vet_id = vets.id
+    WHERE vets.id = %s
+    '''
+    values = [vet.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        pet = Pet(row['name'], row['type'], row['dob'], row['contact_number'], vet, row['id'])
+        pets.append(pet)
+
+    return pets

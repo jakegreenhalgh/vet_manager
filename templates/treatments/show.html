@@ -3,8 +3,8 @@
 {% block content %}
 
     <h1> {{treatment.date}} </h1>
-    <p>Name: {{ treatment.pet.name }}</p>
-    <p>Assigned Vet: {{ treatment.vet.name }}</p> 
+    <p>Name:  <a href="/pets/{{ treatment.pet.id }}"> {{treatment.pet.name}} </a></p>
+    <p>Assigned Vet: <a href="/vets/{{ treatment.vet.id }}"> {{treatment.vet.name}} </a></p> 
     <p>Notes: {{ treatment.notes }}</p>
 
 {% endblock %}

@@ -12,7 +12,15 @@
 
 
 <h3>{{pet.name}}'s treatments:</h3>
-
+<ul>
+    {% for treatment in treatments %}
+        <li>
+            <a href="/treatments/{{ treatment.id }}">{{treatment.date}}</a>
+            <p>Performed by: {{ treatment.vet.name }}</p>
+            <p>Notes: {{ treatment.notes }}</p>
+        </li>
+    {% endfor %}
+</ul>
 
 <h6><a href="/treatments/new">Log a new treatment</a></h6>
 

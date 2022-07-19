@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
+from controllers.treatments_controller import treatments
 from models.pet import Pet
 import repositories.pet_repository as pet_repository
 import repositories.vet_repository as vet_repository
@@ -15,8 +16,8 @@ def pets():
 @pets_blueprint.route("/pets/<id>")
 def show(id):
     pet = pet_repository.select(id)
-    vet1 = pet_repository.vets(pet)
-    return render_template("pets/show.html", pet=pet, vet1=vet1)
+    treatments = pet_repository.treatments(pet)
+    return render_template("pets/show.html", pet=pet, treatments=treatments)
 
 
 @pets_blueprint.route("/pets/new", methods=['GET'])
