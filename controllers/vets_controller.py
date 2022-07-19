@@ -31,6 +31,6 @@ def create_vet():
 
 
 @vets_blueprint.route("/vets/<id>/delete", methods=['POST'])
-def delete_task(id):
+def delete_vet(id):
     vet_repository.delete(id)
     return redirect('/vets')

@@ -1,3 +1,4 @@
+from xml.dom.domreg import registered
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.vet import Vet
@@ -25,12 +26,14 @@ def new_owner():
 @owners_blueprint.route("/owners",  methods=['POST'])
 def create_owner():
     owner_name = request.form['owner_name']
-    owner = owner(owner_name, id)
+    contact_number = request.form['contact_number']
+    registered = True
+    owner = owner(owner_name, contact_number, registered, id)
     owner_repository.save(owner)
     return redirect('/owners')
 
 
 @owners_blueprint.route("/owners/<id>/delete", methods=['POST'])
-def delete_task(id):
+def delete_owner(id):
     owner_repository.delete(id)
     return redirect('/owners')

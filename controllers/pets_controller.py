@@ -38,6 +38,6 @@ def create_pet():
 
 
 @pets_blueprint.route("/pets/<id>/delete", methods=['POST'])
-def delete_task(id):
+def delete_pet(id):
     pet_repository.delete(id)
     return redirect('/pets')

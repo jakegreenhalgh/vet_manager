@@ -37,6 +37,6 @@ def create_treatment():
 
 
 @treatments_blueprint.route("/treatments/<id>/delete", methods=['POST'])
-def delete_task(id):
+def delete_treatment(id):
     treatment_repository.delete(id)
     return redirect('/treatments')
