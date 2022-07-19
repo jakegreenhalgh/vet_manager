@@ -31,20 +31,20 @@ owner_repository.save(owner3)
 owner4 = Owner("Skrek", "5559345", True)
 owner_repository.save(owner4)
 
-pet1 = Pet("Hooty Owlson", "Owl", "07/05/2008", owner1, vet1)
+pet1 = Pet("Hooty Owlson", "Owl", "2008-05-07", owner1, vet1)
 pet_repository.save(pet1)
 
-pet2 = Pet("Hamela Anderson", "Pig", "12/02/2010", owner2, vet2)
+pet2 = Pet("Hamela Anderson", "Pig", "2010-12-02", owner2, vet2)
 pet_repository.save(pet2)
 
-pet3 = Pet("Llama Del Rey", "Llama", "19/10/2015", owner2, vet2)
+pet3 = Pet("Llama Del Rey", "Llama", "2015-10-19/", owner2, vet2)
 pet_repository.save(pet3)
 
-pet4 = Pet("Chewbarkka", "Dog", "27/04/2010", owner3, vet1)
+pet4 = Pet("Chewbarkka", "Dog", "2010-04-27", owner3, vet1)
 pet_repository.save(pet4)
 
-pet5 = Pet("Donkey", "Donkey", "22/04/2001", owner4, vet1)
+pet5 = Pet("Donkey", "Donkey", "2001-04-22", owner4, vet1)
 pet_repository.save(pet5)
 
-treatment1 = Treatment("15/07/2022", vet1, pet1, "Patient had a broken wing")
+treatment1 = Treatment("2022-15-07", vet1, pet1, "Patient had a broken wing")
 treatment_repository.save(treatment1)
