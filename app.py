@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.register_blueprint(pets_blueprint)
 app.register_blueprint(vets_blueprint)
 app.register_blueprint(treatments_blueprint)
+app.register_blueprint(owners_blueprint)
 
 @app.route('/')
 def home():
