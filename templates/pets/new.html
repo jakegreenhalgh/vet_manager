@@ -20,7 +20,7 @@
       {% endfor %}
     </select>
 
-    <label for="pet_vet">Select the vetanarian who performed the treatment:</label>
+    <label for="pet_vet">Select the veterinarian who performed the treatment:</label>
     <select name="pet_vet" id="pet_vet">
       {% for vet in vets %}
       <option value="{{ vet.id }}">{{ vet.name }}</option>

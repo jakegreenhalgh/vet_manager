@@ -10,7 +10,7 @@
   <label for="check_out">Check out date</label>
   <input type="date" name="check_out" placeholder="Date" id="check_out" required>
 
-    <label for="vet_id">Select the vetanarian who performed the treatment:</label>
+    <label for="vet_id">Select the veterinarian who performed the treatment:</label>
     <select name="vet_id" id="vet">
       {% for vet in vets %}
       <option value="{{ vet.id }}">{{ vet.name }}</option>
