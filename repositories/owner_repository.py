@@ -5,14 +5,14 @@ from models.pet import Pet
 import repositories.vet_repository as vet_repository
 
 def select_all():
-    vets = []
+    owners = []
 
-    sql = "SELECT * FROM vets"
+    sql = "SELECT * FROM owners"
     results = run_sql(sql)
     for row in results:
-        vet = Vet(row['name'], row['id'])
-        vets.append(vet)
-    return vets
+        owner = Owner(row['name'], row['contact_number'], row['registered'], row['id'] )
+        owners.append(owner)
+    return owners
 
 
 def select(id):
@@ -36,7 +36,7 @@ def delete_all():
 
 def save(owner):
     sql = "INSERT INTO owners( name, contact_number, registered ) VALUES ( %s, %s, %s ) RETURNING id"
-    values = [owner.name]
+    values = [owner.name, owner.contact_number, owner.registered]
     results = run_sql( sql, values )
     owner.id = results[0]['id']
     return owner
