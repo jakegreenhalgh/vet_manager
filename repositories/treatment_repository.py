@@ -17,13 +17,17 @@ def select_all():
     return treatments
 
 def select(id):
+    result = None
     sql = "SELECT * FROM treatments WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
 
     if results:
         result = results[0]
-        return result
+        pet = pet_repository.select(result['pet_id'])
+        vet = vet_repository.select(result['vet_id'])
+        result = Treatment(result['date_performed'], vet, pet, result['notes'], result['id'])
+    return result
 
 def delete_all():
     sql = "DELETE FROM treatments"

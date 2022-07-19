@@ -16,13 +16,16 @@ def select_all():
 
 
 def select(id):
+    result = None
     sql = "SELECT * FROM pets WHERE id = %s"
     values = [id]
     results = run_sql(sql, values)
 
     if results:
         result = results[0]
-        return result
+        vet = vet_repository.select(result['vet_id'])
+        result = Pet(result['name'], result['type'], result['dob'], result['contact_number'], vet, result['id'])
+    return result
 
 
 def save(pet):
