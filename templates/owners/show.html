@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> {{owner.name}} </h1>
+
+<div>Phone Number: {{ owner.contact_number }}</div>
+
+<div>Registered: </div>
+
+
+
+<h3>{{owner.name}} has the following pets:</h3>
+
+<ul>
+    {% for pet in pets %}
+        <li>
+            <a href="/pets/{{ pet.id }}">{{pet.name}}</a>
+            <p>Type: {{ pet.type }}</p>
+        </li>
+    {% endfor %}
+</ul>
+<h6><a href="/pets/new">Add a new pet</a></h6>
+{% endblock %}

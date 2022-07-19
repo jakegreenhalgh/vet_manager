@@ -39,6 +39,10 @@ def save(pet):
     pet.id = results[0]['id']
     return pet
 
+def delete(id):
+    sql = "DELETE FROM pets WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
 
 def delete_all():
     sql = "DELETE FROM pets"
