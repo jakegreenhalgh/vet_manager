@@ -35,6 +35,7 @@ def save(pet):
     sql = "INSERT INTO pets( name, type, dob, owner_id, vet_id ) VALUES ( %s, %s, %s, %s, %s) RETURNING id"
     values = [pet.name, pet.type, pet.dob, pet.owner.id, pet.vet.id]
     results = run_sql( sql, values )
+    print(results)
     pet.id = results[0]['id']
     return pet
 

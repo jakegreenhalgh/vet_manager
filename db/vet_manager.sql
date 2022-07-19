@@ -13,7 +13,7 @@ CREATE TABLE owners (
   name VARCHAR(255),
   contact_number VARCHAR(255),
   registered BOOLEAN
-)
+);
 
 CREATE TABLE pets (
   id SERIAL PRIMARY KEY,
