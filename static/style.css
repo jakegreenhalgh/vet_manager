@@ -83,3 +83,12 @@ section {
 li {
     list-style: none;
 }
+
+form {
+    display: grid;
+    grid-auto-rows: 20px;
+    margin-right: 500px;
+} 
+ .date_box {
+    font-family: 'Roboto', sans-serif; 
+ }

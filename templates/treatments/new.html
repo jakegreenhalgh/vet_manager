@@ -6,17 +6,20 @@
 
 <form action="/treatments" method="post">
   <label for="check_in">Check in date</label>
-  <input type="date" name="check_in" placeholder="Date" id="check_in" required>
+  <input type="date" class="date_box" name="check_in" placeholder="Date" id="check_in" required>
+  
   
   <label for="check_out">Check out date</label>
-  <input type="date" name="check_out" placeholder="Date" id="check_out" required>
-
+  <input type="date" class="date_box" name="check_out" placeholder="Date" id="check_out" required>
+  
+  
     <label for="vet_id">Select the veterinarian who performed the treatment:</label>
     <select name="vet_id" id="vet">
       {% for vet in vets %}
       <option value="{{ vet.id }}">{{ vet.name }}</option>
       {% endfor %}
     </select>
+  
   
   <label for="pet">Select the pet:</label>
     <select name="pet_id" id="pet" required>
@@ -27,7 +30,7 @@
   
 
   <label for="notes">Add treatment notes here:</label>
-  <textarea name="notes" id="notes" cols="30" rows="10" required ></textarea>
+  <textarea name="notes" id="notes" cols="20" rows="3" required ></textarea>
   <input class="btn btn--action" type='submit' value="Submit log">
 </form>
 </section>
