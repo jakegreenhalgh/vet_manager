@@ -39,6 +39,11 @@ def save(pet):
     pet.id = results[0]['id']
     return pet
 
+def update(pet):
+    sql = "UPDATE pets SET (name, type, dob, owner_id, vet_id) = ( %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [pet.name, pet.type, pet.dob, pet.owner.id, pet.vet.id, pet.id]
+    run_sql(sql, values)
+
 def delete(id):
     sql = "DELETE FROM pets WHERE id = %s"
     values = [id]

@@ -6,5 +6,7 @@
     <p>Name:  <a href="/pets/{{ treatment.pet.id }}"> {{treatment.pet.name}} </a></p>
     <p>Assigned Vet: <a href="/vets/{{ treatment.vet.id }}"> {{treatment.vet.name}} </a></p> 
     <p>Notes: {{ treatment.notes }}</p>
+    <p><a href="/treatments/{{treatment.id}}/edit">&#9997</a>
+    </p>
 </section>
 {% endblock %}

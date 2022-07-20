@@ -41,3 +41,23 @@ def create_treatment():
 def delete_treatment(id):
     treatment_repository.delete(id)
     return redirect('/treatments')
+
+@treatments_blueprint.route("/treatments/<id>/edit", methods = ["GET"])
+def edit(id):
+    treatment = treatment_repository.select(id)
+    vets = vet_repository.select_all()
+    pets = pet_repository.select_all()
+    return render_template("/treatments/edit.html", treatment = treatment, pets=pets, vets=vets)
+
+@treatments_blueprint.route("/treatments/<id>", methods = ["POST"])
+def update(id):
+    check_in = request.form['check_in']
+    check_out = request.form['check_out']
+    vet_id = request.form['vet_id']
+    pet_id = request.form['pet_id']
+    notes = request.form['notes']
+    vet = vet_repository.select(vet_id)
+    pet = pet_repository.select(pet_id)
+    treatment = Treatment(check_in, check_out, vet, pet, notes, id)
+    treatment_repository.update(treatment)
+    return redirect(f"/treatments/{treatment.id}")

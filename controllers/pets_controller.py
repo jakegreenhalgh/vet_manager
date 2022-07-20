@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
+from models.owner import Owner
 from models.pet import Pet
 import repositories.pet_repository as pet_repository
 import repositories.vet_repository as vet_repository
@@ -36,6 +37,23 @@ def create_pet():
     pet_repository.save(pet)
     return redirect('/pets')
 
+@pets_blueprint.route("/pets/<id>/edit", methods = ["GET"])
+def edit(id):
+    pet = pet_repository.select(id)
+    vets = vet_repository.select_all()
+    owners = owner_repository.select_all()
+    return render_template("/pets/edit.html", pet = pet, vets=vets, owners=owners)
+
+@pets_blueprint.route("/pets/<id>", methods = ["POST"])
+def update(id):
+    pet_name = request.form['name']
+    pet_type = request.form['type']
+    pet_dob = request.form['dob']
+    owner = owner_repository.select(request.form['pet_owner'])
+    vet = vet_repository.select(request.form['pet_vet'])
+    pet = Pet(pet_name, pet_type, pet_dob, owner, vet, id)
+    pet_repository.update(pet)
+    return redirect(f"/pets/{pet.id}")
 
 @pets_blueprint.route("/pets/<id>/delete", methods=['POST'])
 def delete_pet(id):

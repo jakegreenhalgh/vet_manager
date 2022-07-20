@@ -40,6 +40,11 @@ def save(vet):
     vet.id = results[0]['id']
     return vet
 
+def update(vet):
+    sql = "UPDATE vets SET (name) = (%s) WHERE id = %s"
+    values = [vet.name, vet.id]
+    run_sql(sql, values)
+
 def pets(vet):
     pets = []
 

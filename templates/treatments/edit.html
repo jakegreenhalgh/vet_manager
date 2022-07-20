@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+<h1>Edit treatment log</h1>
+
+<form action="/treatments/{{treatment.id}}" method="post">
+  <label for="check_in">Check in date</label>
+  <input type="date" class="date_box" name="check_in" placeholder="Date" id="check_in" required value="{{treatment.check_in}}">
+  
+  
+  <label for="check_out">Check out date</label>
+  <input type="date" class="date_box" name="check_out" placeholder="Date" id="check_out" required value="{{treatment.check_out}}">
+  
+  
+    <label for="vet_id">Select the veterinarian who performed the treatment:</label>
+    <select name="vet_id" id="vet" required>
+      {% for vet in vets %}
+      <option value="{{ vet.id }}" {% if treatment.vet.id == vet.id %} selected="selected" {% endif %}>{{ vet.name }}</option>
+      {% endfor %}
+    </select>
+  
+  
+  <label for="pet">Select the pet:</label>
+    <select name="pet_id" id="pet" required>
+      {% for pet in pets %}
+      <option value="{{ pet.id }}" {% if treatment.vet.id == pet.id%} selected="selected" {% endif %}>{{ pet.name }}</option>
+      {% endfor %}
+    </select>
+  
+
+  <label for="notes">Add treatment notes here:</label>
+  <textarea name="notes" id="notes" cols="20" rows="3" required>{{treatment.notes}}</textarea>
+  <input class="btn btn--action" type='submit' value="Submit log">
+</form>
+</section>
+{% endblock %}

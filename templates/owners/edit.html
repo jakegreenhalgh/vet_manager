@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+<h1>Edit owner record</h1>
+
+<form action="/owners/{{owner.id}}" method="post">
+  <label for="owner_name">Name</label>
+  <input type="text" name="owner_name" placeholder="Name" required value="{{owner.name}}">
+  <label for="contact_number">Phone Number</label>
+  <input type="text" name="contact_number" placeholder="Phone Number" value="{{owner.contact_number}}" required>
+
+  <input class="btn btn--action" type='submit' value="Submit">
+</form>
+</section>
+{% endblock %}

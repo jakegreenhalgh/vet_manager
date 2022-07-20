@@ -44,3 +44,8 @@ def save(treatment):
     results = run_sql( sql, values )
     treatment.id = results[0]['id']
     return treatment
+
+def update(treatment):
+    sql = "UPDATE treatments SET (check_in, check_out, pet_id, vet_id, notes) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    values = [treatment.check_in, treatment.check_out, treatment.pet.id, treatment.vet.id, treatment.notes, treatment.id]
+    run_sql(sql, values)

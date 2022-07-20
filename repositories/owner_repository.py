@@ -41,6 +41,11 @@ def save(owner):
     owner.id = results[0]['id']
     return owner
 
+def update(owner):
+    sql = "UPDATE pets SET (name, contact_number, registered) = ( %s, %s, %s) WHERE id = %s"
+    values = [owner.name, owner.contact_number, owner.registered, owner.id]
+    run_sql(sql, values)
+
 def pets(owner):
     pets = []
 
