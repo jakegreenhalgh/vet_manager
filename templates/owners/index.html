@@ -4,16 +4,12 @@
 <section>
 <h1>All pet owners</h1>
 
-<h6><a href="/owners/new">Add a new owner</a></h6>
-
-<ul>
     {% for owner in owners %}
-        <li>
-            <a href="/owners/{{ owner.id }}">{{owner.name}}</a>
-            <div>Phone: {{ owner.contact_number }}</div>
-            <div>Registered: </div>
-        </li>
-    {% endfor %}
-</ul>
+    <div id="table_entry">
+        <p><a href="/owners/{{ owner.id }}">{{owner.name}}</a></p>
+        <p>Phone: {{ owner.contact_number }}</p>
+    </div>
+{% endfor %}
+<h4><a href="/owners/new">Add a new owner</a></h4>
 </section>    
 {% endblock content %}

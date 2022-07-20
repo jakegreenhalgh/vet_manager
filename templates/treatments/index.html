@@ -5,16 +5,15 @@
 <h1>All treatments performed</h1>
 <h3>Please select a record</h3>
 
-<h6><a href="/treatments/new">Log a new treatment</a></h6>
 
-<ul>
+
+<div id="table_entry">
     {% for treatment in treatments %}
-        <li>
-            <a href="/treatments/{{ treatment.id }}">{{treatment.check_in}} - {{ treatment.check_out }}</a>
-            <p>Name: {{ treatment.pet.name }}</p>
-            <p>Performed by: {{ treatment.vet.name }}</p>
-        </li>
+        <p><a href="/treatments/{{ treatment.id }}">{{treatment.check_in}} - {{ treatment.check_out }}</a></p>
+        <p>Name: {{ treatment.pet.name }}</p>
+        <p>Performed by: {{ treatment.vet.name }}</p>
     {% endfor %}
-</ul>
+</div>
+<h4><a href="/treatments/new">Log a new treatment</a></h4>
 </section>    
 {% endblock content %}

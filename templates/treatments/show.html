@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section>
+<section id="table_entry">
     <h1> {{treatment.check_in}} - {{ treatment.check_out }} </h1>
     <p>Name:  <a href="/pets/{{ treatment.pet.id }}"> {{treatment.pet.name}} </a></p>
     <p>Assigned Vet: <a href="/vets/{{ treatment.vet.id }}"> {{treatment.vet.name}} </a></p> 
