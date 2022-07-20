@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section>
 <h1> {{owner.name}} </h1>
 
 <div>Phone Number: {{ owner.contact_number }}</div>
@@ -20,4 +21,5 @@
     {% endfor %}
 </ul>
 <h6><a href="/pets/new">Add a new pet</a></h6>
+</section>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section>
 <table>
     <h1> {{pet.name}} </h1>
     <p>Type: {{ pet.type }}</p>
@@ -23,5 +24,5 @@
 </ul>
 
 <h6><a href="/treatments/new">Log a new treatment</a></h6>
-
+</section>
 {% endblock %}

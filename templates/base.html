@@ -5,22 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vet Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <header>
     <nav>
         <ul class="menu">
             <li id="menu_list"><a id="menu_links" href="/"><img src="/static/vet_logo.jpeg" 
-                width="100"
-                height="100"
+                width="80"
+                height="80"
                 alt="logo"></a></li>
-            <li id="menu_list"><a id="menu_links" href="/vets">Veterinarians</a></li>
-            <li id="menu_list"><a id="menu_links" href="/owners">Owners</a></li>
-            <li id="menu_list"><a id="menu_links" href="/pets">Pets</a></li>
-            <li id="menu_list"><a id="menu_links" href="/treatments">Treatments</a></li>
+            <li id="menu_list"><a id="menu_links" href="/vets/new">Add a Veterinarian</a></li>
+            <li id="menu_list"><a id="menu_links" href="/owners/new">Register an Owner</a></li>
+            <li id="menu_list"><a id="menu_links" href="/pets/new">Register a Pet</a></li>
+            <li id="menu_list"><a id="menu_links" href="/treatments/new">Log a Treatment</a></li>
         </ul>
     </nav>
+
 </header>
+    <nav class="navigation">
+        <ul>
+            <li id="nav_list">Browse existing by:</li>
+            <li id="nav_list"><a id="nav_links" href="/vets">Veterinarians</a></li>
+            <li id="nav_list"><a id="nav_links" href="/owners">Owners</a></li>
+            <li id="nav_list"><a id="nav_links" href="/pets">Pets</a></li>
+            <li id="nav_list"><a id="nav_links" href="/treatments">Treatments</a></li>
+        </ul>
+    </nav>
 <body>
     {% block content %}
         

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section>
 <h1> {{vet.name}} </h1>
 
 <h6><a href="/treatments/new">Log a new treatment</a></h6>
@@ -15,5 +16,7 @@
         </li>
     {% endfor %}
 </ul>
+</section>
+
 
 {% endblock %}
