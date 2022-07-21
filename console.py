@@ -25,11 +25,14 @@ owner_repository.save(owner1)
 owner2 = Owner("Bob", "5559314", True)
 owner_repository.save(owner2)
 
-owner3 = Owner("John", "5559314", True)
+owner3 = Owner("Dick Dastardly", "5559314", True)
 owner_repository.save(owner3)
 
 owner4 = Owner("Shrek", "5559345", True)
 owner_repository.save(owner4)
+
+owner5 = Owner("Shaggy", "5864621", True)
+owner_repository.save(owner5)
 
 pet1 = Pet("Hooty Owlson", "Owl", "2008-05-07", owner1, vet1)
 pet_repository.save(pet1)
@@ -40,7 +43,7 @@ pet_repository.save(pet2)
 pet3 = Pet("Llama Del Rey", "Llama", "2015-10-19/", owner2, vet2)
 pet_repository.save(pet3)
 
-pet4 = Pet("Chewbarkka", "Dog", "2010-04-27", owner3, vet1)
+pet4 = Pet("Muttley", "Dog", "2010-04-27", owner3, vet1)
 pet_repository.save(pet4)
 
 pet5 = Pet("Donkey", "Donkey", "2001-04-22", owner4, vet1)
@@ -49,5 +52,14 @@ pet_repository.save(pet5)
 pet6 = Pet("Puss in Boots", "Cat" "2004-05-15", owner4, vet2)
 pet_repository.save(pet6)
 
+pet7 = Pet("Scooby Doo", "Dog", "2001-02-15", owner5, vet1)
+pet_repository.save(pet7)
+
+pet8 = Pet("Scrappy Doo", "Dog", "2005-12-25", owner5, vet1)
+pet_repository.save(pet8)
+
 treatment1 = Treatment("2022-07-15", "2022-07-19", vet1, pet1, "Patient had a broken wing")
 treatment_repository.save(treatment1)
+
+treatment2 = Treatment("2022-07-01", "2022-07-07", vet1, pet7, "Ate too many scooby snacks")
+treatment_repository.save(treatment2)
